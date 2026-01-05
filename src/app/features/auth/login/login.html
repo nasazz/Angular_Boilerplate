@@ -1,0 +1,114 @@
+<div class="min-h-screen w-full flex bg-white">
+  
+<div class="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-16 animate-in fade-in slide-in-from-left-4 duration-700">
+  <div class="w-full max-w-[400px] flex flex-col gap-6">
+    
+    <div class="mb-2">
+      <div class="flex items-center gap-3 mb-8">
+        <svg class="w-10 h-10 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+           <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+           <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+        <span class="text-2xl font-bold text-slate-900 tracking-tighter">HireFlow</span>
+      </div>
+
+      <h1 class="text-2xl font-bold text-slate-900">Welcome back</h1>
+      <p class="text-slate-500 mt-2">Please enter your details to sign in.</p>
+    </div>
+
+    @if (store.error()) {
+      <div class="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg text-sm flex items-center gap-2">
+         <i class="pi pi-exclamation-circle"></i>
+         <span>{{ store.error() }}</span>
+      </div>
+    }
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-5">
+      
+      <div class="flex flex-col gap-2">
+        <label for="email" class="text-sm font-semibold text-slate-700">Email</label>
+        <input 
+          pInputText 
+          id="email" 
+          formControlName="email" 
+          placeholder="recruiter@company.com"
+          class="w-full !bg-slate-50 hover:!bg-white focus:!bg-white !border-slate-200 focus:!border-blue-500 !shadow-none transition-all"
+          [class.ng-invalid]="getFieldError('email')" 
+          [class.ng-dirty]="getFieldError('email')"
+        />
+        @if (getFieldError('email'); as errorMsg) {
+          <small class="text-red-500 text-xs font-medium">{{ errorMsg }}</small>
+        }
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label for="password" class="text-sm font-semibold text-slate-700">Password</label>
+        <p-password 
+          id="password" 
+          formControlName="password" 
+          [feedback]="false" 
+          placeholder="••••••••"
+          styleClass="w-full"
+          inputStyleClass="w-full !bg-slate-50 hover:!bg-white focus:!bg-white !border-slate-200 focus:!border-blue-500 !shadow-none"
+          [toggleMask]="true"
+          [class.ng-invalid]="getFieldError('password')"
+          [class.ng-dirty]="getFieldError('password')">
+        </p-password>
+         @if (getFieldError('password'); as errorMsg) {
+          <small class="text-red-500 text-xs font-medium">{{ errorMsg }}</small>
+        }
+      </div>
+      
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+           </div>
+        <a routerLink="/auth/forgot-password" class="text-sm font-semibold text-blue-600 hover:text-blue-700 cursor-pointer transition-colors">
+          Forgot password?
+        </a>
+      </div>
+
+      <p-button 
+        type="submit" 
+        label="Sign In" 
+        styleClass="w-full bg-blue-600 border-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-600/20"
+        [loading]="store.isLoading()">
+      </p-button>
+
+    </form>
+
+    <div class="text-center mt-4">
+      <span class="text-slate-500 text-sm">Don't have an account? </span>
+      <a (click)="navigateToRegister()" class="text-sm font-bold text-blue-600 hover:text-blue-700 cursor-pointer transition-colors">
+        Sign up for free
+      </a>
+    </div>
+  </div>
+</div>
+
+  <div class="hidden lg:flex w-1/2 relative bg-blue-50 items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <img 
+            src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop" 
+            alt="Office background" 
+            class="w-full h-full object-cover opacity-90"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-blue-600/30 mix-blend-multiply"></div>
+    </div>
+
+    <div class="relative z-10 max-w-md bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl shadow-2xl animate-in fade-in slide-in-from-right-8 duration-1000">
+        <div class="flex items-center gap-4 mb-4">
+             <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white">
+                <i class="pi pi-users text-xl"></i>
+             </div>
+             <div class="text-white">
+                 <p class="font-semibold">Streamlined Hiring</p>
+                 <p class="text-blue-100 text-xs">For Recruiters & Candidates</p>
+             </div>
+        </div>
+        <p class="text-blue-50 text-lg leading-relaxed">
+            "HireFlow helps you connect with top talent and manage applications effortlessly."
+        </p>
+    </div>
+  </div>
+
+</div>

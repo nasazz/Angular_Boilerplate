@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "primeicons/primeicons.css";
+/* 1. Tailwind Directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 2. Layer Definitions */
+/* This ensures that 'primeng' styles sit between Tailwind's base and utilities */
+@layer tailwind-base, primeng, tailwind-utilities;
+
+@layer tailwind-base {
+  @tailwind base;
+}
+
+@layer tailwind-utilities {
+  @tailwind utilities;
+}
+
+/* 3. Global App Styles */
+:root {
+  /* This sets the base background to a crisp White/Very Light Grey */
+  --p-surface-50: #f8fafc; 
+}
+
+body {
+  margin: 0;
+  font-family: var(--p-font-family);
+  background-color: var(--p-surface-50);  /* Soft Gray Background */
+  color: var(--p-surface-900);  /* Dark Text */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optional: Make all PrimeNG inputs full-width by default if needed */
+.p-inputtext {
+    @apply w-full;
+}
